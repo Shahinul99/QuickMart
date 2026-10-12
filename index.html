@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuickMart</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Arial, sans-serif; background: #f2f4f7; color: #222; }
+  header { background: #0071dc; color: #fff; padding: 12px 20px; display: flex;
+           align-items: center; gap: 16px; position: sticky; top: 0; z-index: 5; }
+  header h1 { margin: 0; font-size: 22px; }
+  #search { flex: 1; padding: 10px 14px; border-radius: 20px; border: none; font-size: 15px; }
+  #cartBtn { background: #ffc220; border: none; border-radius: 20px; padding: 10px 16px;
+             font-weight: bold; cursor: pointer; }
+  .cats { padding: 12px 20px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .cat { padding: 7px 14px; border-radius: 16px; border: 1px solid #0071dc; background: #fff;
+         color: #0071dc; cursor: pointer; }
+  .cat.active { background: #0071dc; color: #fff; }
+  #grid { padding: 0 20px 30px; display: grid; gap: 16px;
+          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+  .card { background: #fff; border-radius: 12px; padding: 16px; text-align: center;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.12); }
+  .emoji { font-size: 56px; }
+  .price { color: #2a8703; font-weight: bold; font-size: 18px; margin: 6px 0; }
+  .add { background: #0071dc; color: #fff; border: none; border-radius: 18px;
+         padding: 8px 16px; cursor: pointer; width: 100%; }
+  #panel { position: fixed; top: 0; right: -360px; width: 340px; max-width: 90%; height: 100%;
+           background: #fff; box-shadow: -3px 0 12px rgba(0,0,0,0.25); padding: 18px;
+           transition: right 0.3s; z-index: 10; overflow-y: auto; }
+  #panel.open { right: 0; }
+  .row { display: flex; justify-content: space-between; align-items: center;
+         padding: 10px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+  .qty button { width: 26px; height: 26px; border-radius: 50%; border: 1px solid #aaa;
+                background: #fff; cursor: pointer; }
+  .total { font-size: 20px; font-weight: bold; margin: 16px 0; }
+  .close, .checkout { border: none; border-radius: 8px; padding: 10px; cursor: pointer;
+                      width: 100%; margin-top: 8px; font-weight: bold; }
+  .checkout { background: #2a8703; color: #fff; }
+  .none { text-align: center; color: #777; padding: 40px 0; grid-column: 1 / -1; }
+</style>
+</head>
+<body>
+<header>
+  <h1>QuickMart</h1>
+  <input id="search" type="text" placeholder="Search products...">
+  <button id="cartBtn">🛒 Cart (<span id="count">0</span>)</button>
+</header>
+<div class="cats" id="cats"></div>
+<div id="grid"></div>
+
+<div id="panel">
+  <h2>Your Cart</h2>
+  <div id="items"></div>
+  <div class="total">Total: $<span id="total">0.00</span></div>
+  <button class="checkout" id="checkoutBtn">Checkout</button>
+  <button class="close" id="closeBtn">Keep Shopping</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
